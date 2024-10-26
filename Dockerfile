@@ -1,8 +1,11 @@
-FROM alpine:latest
-RUN apk --update add ca-certificates \
-                     mailcap \
-                     curl \
-                     jq
+FROM ubuntu:latest
+
+# Update package list and install required packages
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    mailcap \
+    curl \
+    jq
 
 COPY healthcheck.sh /healthcheck.sh
 RUN chmod +x /healthcheck.sh  # Make the script executable
